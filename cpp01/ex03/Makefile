@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp 
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJS = $(SRCS:.cpp=.o)
-TARGET = megaphone
+TARGET = unnecessary_violence
 
 all: $(TARGET)
 

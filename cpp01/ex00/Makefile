@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp 
+SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJS = $(SRCS:.cpp=.o)
-TARGET = megaphone
+TARGET = BraiiiiiiinnnzzzZ
 
 all: $(TARGET)
 

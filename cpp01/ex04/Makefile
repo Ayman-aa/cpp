@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
-TARGET = megaphone
+TARGET = replace
 
 all: $(TARGET)
 
