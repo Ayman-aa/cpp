@@ -71,8 +71,6 @@ bool Account::makeWithdrawal(int withdrawal)
     }
 }
 
-int Account::checkAmount() const { return _amount; }
-
 void Account::displayStatus() const
 {
     _displayTimestamp();
@@ -86,6 +84,8 @@ void Account::displayAccountsInfos()
     std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount
               << ";deposits:" << _totalNbDeposits << ";withdrawals:" << _totalNbWithdrawals << std::endl;
 }
+
+int Account::checkAmount() const { return _amount; }
 
 int Account::getNbAccounts() { return _nbAccounts; }
 

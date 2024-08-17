@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRCS = tests.cpp Account.cpp
 OBJS = $(SRCS:.cpp=.o)
-TARGET = phonebook
+TARGET = Account
 
 all: $(TARGET)
 
