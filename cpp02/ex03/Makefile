@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Fixed.cpp Point.cpp BSP.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = BSP
+all: BSP
 
-all: $(TARGET)
+BSP: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o BSP
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f BSP
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

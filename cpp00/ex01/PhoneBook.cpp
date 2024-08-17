@@ -11,19 +11,33 @@ PhoneBook::~PhoneBook(void) {}
 
 // helpers methods
 // adding comprehensive text prompt to the user
+bool PhoneBook:: _isAllPrintable(const std::string& str)
+{
+    for (size_t i = 0; i < str.length(); ++i)
+    {
+        if (str[i] < 32 || str[i] > 126)
+        {
+            return false;
+        }
+    }
+    return true;
+}
 std::string PhoneBook::_addPrompt(std::string prompt)
 {
 	std::string	input;
 	std::cout << "   " << prompt << ": ";
 	while (1)
 	{
-		if (!std::getline(std::cin, input)) {
+		if (!std::getline(std::cin, input))
+		{
 			std::cout << "NULL" << std::endl;
 			input = "NULL";
 			break ;
 		}
-		if (!input.empty()) break ;
-		if (!std::cin.eof()) std::cout << "   " << prompt << ": ";
+		if (!input.empty() && _isAllPrintable(input)) 
+			break ;
+		if (!std::cin.eof() && !std::cin.fail()) 
+			std::cout << "   " << prompt << ": ";
 	}
 	return (input);
 }

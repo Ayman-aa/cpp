@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp ClapTrap.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = Clap
+all: Clap
 
-all: $(TARGET)
+Clap: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o Clap
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f Clap
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

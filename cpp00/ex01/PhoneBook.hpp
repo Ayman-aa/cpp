@@ -16,6 +16,7 @@ class PhoneBook
         void            _displayContacts(void);
         std::string     _addPrompt(std::string str);
         std::string     _widthBar(std::string str);
+        bool            _isAllPrintable(const std::string& str);
 
     public:
 

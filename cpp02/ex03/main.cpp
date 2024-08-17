@@ -25,11 +25,11 @@ int main() {
     // Test BSP function
     Point inside(1.0f, 1.0f);
     Point outside(4.0f, 4.0f);
-    Point onEdge(2.25f, 1.5f);
+    Point onEdge(1.4999f, 1.5f);
 
     std::cout << "Is (1, 1) inside the triangle? " << (bsp(a, b, c, inside) ? "Yes" : "No") << std::endl;
     std::cout << "Is (4, 4) inside the triangle? " << (bsp(a, b, c, outside) ? "Yes" : "No") << std::endl;
-    std::cout << "Is (2.25, 1.5) inside the triangle? " << (bsp(a, b, c, onEdge) ? "Yes" : "No") << std::endl;
+    std::cout << "Is ( 1.499, 1.5) inside the triangle? " << (bsp(a, b, c, onEdge) ? "Yes" : "No") << std::endl;
 
     return 0;
 }

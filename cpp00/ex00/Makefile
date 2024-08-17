@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp 
-OBJS = $(SRCS:.cpp=.o)
-TARGET = megaphone
+all: megaphone
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
-
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+phonebook: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o megaphone
 
 clean:
-	@rm -f $(OBJS)
+	@rm -f megaphone
 
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

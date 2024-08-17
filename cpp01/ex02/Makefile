@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp 
-OBJS = $(SRCS:.cpp=.o)
-TARGET = HI_THIS_IS_BRAIN
+all: HI_THIS_IS_BRAIN
 
-all: $(TARGET)
+HI_THIS_IS_BRAIN: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o HI_THIS_IS_BRAIN
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f HI_THIS_IS_BRAIN
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

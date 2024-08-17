@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Harl.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = harl
+all: harl
 
-all: $(TARGET)
+harl: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o harl
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f harl
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

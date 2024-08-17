@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Fixed.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = fixed
+all: fixed
 
-all: $(TARGET)
+fixed: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o fixed
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f fixed
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

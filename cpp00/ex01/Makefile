@@ -1,23 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp PhoneBook.cpp Contact.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = phonebook
+all: phonebook
 
-all: $(TARGET)
+phonebook: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o phonebook
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f phonebook
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-re: fclean all 
-
-.PHONY: all clean fclean re
+re : clean all

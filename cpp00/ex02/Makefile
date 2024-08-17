@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = tests.cpp Account.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = Account
+all: account
 
-all: $(TARGET)
+account: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o account
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f account
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all

@@ -1,21 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
-OBJS = $(SRCS:.cpp=.o)
-TARGET = BraiiiiiiinnnzzzZ
+all: BraiiiiiiinnnzzzZ
 
-all: $(TARGET)
+BraiiiiiiinnnzzzZ: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o BraiiiiiiinnnzzzZ
 
-$(TARGET): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+clean: 
+	@rm -f BraiiiiiiinnnzzzZ
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
-
-fclean: clean
-	@rm -f $(TARGET)
-
-.PHONY: all clean fclean
+re : clean all
