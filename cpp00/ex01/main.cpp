@@ -18,13 +18,13 @@ int main(void)
             break ;
         }
 
-        if (!input.compare("ADD"))
+        if (!input.compare("ADD") || !input.compare("add"))
             phonebook.addContactPrompt();
 
-        else if (!input.compare("SEARCH"))
+        else if (!input.compare("SEARCH") || !input.compare("search"))
             phonebook.searchPrompt();
         
-        else if (!input.compare("EXIT"))
+        else if (!input.compare("EXIT") || !input.compare("exit"))
             break ;
     }
     std::cout << "Exiting program" << std::endl;
