@@ -1,6 +1,6 @@
 all: megaphone
 
-phonebook: *.cpp
+megaphone: *.cpp
 	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o megaphone
 
 clean:
