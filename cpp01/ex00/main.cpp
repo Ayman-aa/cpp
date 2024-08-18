@@ -6,13 +6,13 @@ void	randomChump(std::string name);
 
 int main(void)
 {
-    // Creating an instance
-    std::cout << "Zombie incarnation spell, summoning Godrick" << std::endl;
+    // Creating an instance dynamically
+    std::cout << "Zombie incarnation , summoning Godrick" << std::endl;
     Zombie *godrick = newZombie("Godrick");
     godrick->announce();
 
     // Creating another instance
-    std::cout << "Zombie incarnation spell, summoning Negan" << std::endl;
+    std::cout << "Zombie incarnation , summoning Negan" << std::endl;
     randomChump("Negan");
 
     delete godrick;
