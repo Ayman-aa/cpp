@@ -4,34 +4,30 @@
 
 std::string findAndReplace(std::string inputLine, std::string target, std::string replacement)
 {
-    //seraching for target index if found
+    // Searching for the target index if found
     int position = inputLine.find(target);
 
     if (position == -1)
         return inputLine;
     
-    //deleting the target and replace it with replacememnt in the exact same position(index)
+    // Deleting the target and replacing it with the replacement in the exact same position (index)
     inputLine.erase(position, target.length());
     inputLine.insert(position, replacement);
     return inputLine;
 }
 
-void replaceProcess(std::ifstream & inputFile, std::ofstream & outputFile, std::string target, std::string replacement)
+void replaceProcess(std::ofstream & outputFile, std::string currentLine, std::string target, std::string replacement)
 {
-    std::string currentLine;
-
-    //storing line data from inputfile to currentline
-    std::getline(inputFile, currentLine);
     while (true) 
     {
         std::string originalLine = currentLine;
 
         currentLine = findAndReplace(currentLine, target, replacement);
-        //when currentline is the same as originalline even after findandreplace function then are no further changes to be made
+        // When currentLine is the same as originalLine even after findAndReplace function then... there are no further changes to be made
         if (originalLine == currentLine)
             break;
     }
-    //printing the currentline into output file with newline
+    // Printing the currentLine into the output file with a newline
     outputFile << currentLine << std::endl;
 }
 
@@ -53,7 +49,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    //opening an input/output file stream, expected null terminated string, a.k.a string.data()
+    // Opening an input/output file stream, expected null-terminated string, a.k.a string.data()
     std::ifstream inputFile(inputFileName.data());
     if (!inputFile.is_open())
     {
@@ -68,13 +64,17 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    //looping on the file until we reach EOF
-    while (!inputFile.eof())
-        replaceProcess(inputFile, outputFile, target, replacement);
+    std::string currentLine;
+
+    // Looping over the file, reading one line at a time until EOF is reached
+    while (std::getline(inputFile, currentLine))
+    {
+        replaceProcess(outputFile, currentLine, target, replacement);
+    }
 
     inputFile.close();
     outputFile.close();
 
-    std::cout << "Done. review changes by typing cat " << inputFileName <<".replace" << std::endl;
+    std::cout << "Done. Review changes by typing cat " << inputFileName << ".replace" << std::endl;
     return 0;
 }
