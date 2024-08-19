@@ -19,6 +19,6 @@ int main(void)
 	std::cout << "Printing content..."  << std::endl;
 	std::cout << "Value of string variable: " << string << std::endl;
 	std::cout << "Value pointed by stringPTR: " << *stringPTR << std::endl;
-	std::cout << "Value pointed by stringREF: " << string << std::endl;
+	std::cout << "Value pointed by stringREF: " << stringREF << std::endl;
 	return (0);
 }

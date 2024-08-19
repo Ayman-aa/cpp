@@ -1,5 +1,4 @@
 #include "ClapTrap.hpp"
-#include <iostream>
 
 /* Constructors & Destructors */
 ClapTrap::ClapTrap(void) : _name("unidentified"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
@@ -24,7 +23,8 @@ ClapTrap::~ClapTrap(void)
 /* Member functions */
 void ClapTrap::attack(const std::string& target)
 {
-    if(this->_name == target){
+    if(this->_name == target)
+    {
         std::cout << "ClapTrap " << this->_name << " can't attack itself! Or maybe change the name of the target" << std::endl;
         return ;
     }

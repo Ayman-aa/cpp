@@ -5,7 +5,7 @@ int main(void)
 
     ClapTrap clapTrap("Clapy");
     ClapTrap clapTrap2("Clapo");
-    ClapTrap clapTrap3 ("Clapu");
+    ClapTrap clapTrap3 ("Clapa");
 
     clapTrap.setAttackDamage(5);
     clapTrap.attack(clapTrap2.getName());

@@ -1,6 +1,6 @@
 # include "Zombie.hpp"
 
-// Creating new instance of class Zombie and storing in the the stack within the function scope
+// Creating new instance of class Zombie and in the stack within the function scope
 void    randomChump(std::string name)
 {
     Zombie zombie = Zombie(name);

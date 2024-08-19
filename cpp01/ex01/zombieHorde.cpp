@@ -6,7 +6,13 @@ Zombie* zombieHorde(int N,std::string name)
     if (N < 0)
         return (NULL);
     
-    Zombie *horde = new Zombie[N];
+    // Try to allocate memory
+    Zombie* horde = new(std::nothrow) Zombie[N];
+    if (horde == NULL)
+    {
+        std::cerr << "Error: Memory allocation failed." << std::endl;
+        return NULL;
+    }
 
     for(int i = 0; i < N; i++)
         horde[i].setName(name);

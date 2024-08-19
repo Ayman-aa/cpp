@@ -10,6 +10,12 @@ int	main(void)
 
 	std::cout << "Initializing Zombie Horde" << std::endl;
 	Zombie	*horde = zombieHorde(num, name);
+	if (horde == NULL)
+	{
+		std::cerr << "Error: Memory allocation failed." << std::endl;
+		delete[] horde;
+		return (1);
+	}
 
 	std::cout << "Announcing the horde" << std::endl;
 	for (int i = 0; i < num; i++)

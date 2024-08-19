@@ -1,0 +1,648 @@
+all: BraiiiiiiinnnzzzZ
+
+BraiiiiiiinnnzzzZ: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o BraiiiiiiinnnzzzZ
+
+clean: 
+	@rm -f BraiiiiiiinnnzzzZ
+
+re : clean all
+# include "Zombie.hpp"
+
+// Constructor
+Zombie::Zombie(std::string name)
+{
+    this->_name = name;
+    std::cout << this->_name << " has been summoned" << std::endl;
+}
+
+// Deconstructor
+Zombie::~Zombie(void)
+{
+    std::cout << this->_name << " has been demolished" << std::endl;
+}
+
+// Method
+void Zombie::announce(void)
+{
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}#ifndef ZOMBIE__HPP
+# define ZOMBIE__HPP
+
+# include <iostream>
+
+class Zombie
+{
+    private:
+        std::string _name;
+    
+    public:
+        Zombie(std::string name);
+        ~Zombie(void);
+        void        announce(void);
+};
+
+#endif# include "Zombie.hpp"
+
+// Prototypes of functions needed
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
+
+int main(void)
+{
+    // Creating an instance dynamically
+    std::cout << "Zombie incarnation , summoning Godrick" << std::endl;
+    Zombie *godrick = newZombie("Godrick");
+    godrick->announce();
+
+    // Creating another instance
+    std::cout << "Zombie incarnation , summoning Negan" << std::endl;
+    randomChump("Negan");
+
+    delete godrick;
+}# include "Zombie.hpp"
+
+// Creating new instance of class Zombie and allocate it to the heap and return the pointer
+Zombie* newZombie(std::string name)
+{
+    return (new Zombie(name));
+}# include "Zombie.hpp"
+
+// Creating new instance of class Zombie and in the stack within the function scope
+void    randomChump(std::string name)
+{
+    Zombie zombie = Zombie(name);
+    zombie.announce();
+
+    // allocating in the heap then expplicitly deleting it
+    // Zombie *zombie = new Zombie(name);
+    // zombie->announce();
+    // delete zombie;
+}all: Moar_Brains
+
+Moar_Brains: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o Moar_Brains
+
+clean: 
+	@rm -f Moar_Brains
+
+re : clean all
+# include "Zombie.hpp"
+
+// Default constructor
+Zombie::Zombie()
+{
+    std::cout  << "The mimic tear is ready" << std::endl;
+}
+
+// Constructor
+Zombie::Zombie(std::string name)
+{
+    this->_name = name;
+    std::cout << this->_name << " has been summoned" << std::endl;
+}
+
+// Deconstructor
+Zombie::~Zombie(void)
+{
+    std::cout << this->_name << " has been demolished" << std::endl;
+}
+
+// Method
+void Zombie::announce(void)
+{
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+// Getter and Setter
+
+std::string Zombie::getName(void)
+{
+    return (this->_name);
+}
+
+void    Zombie::setName(std::string name)
+{
+    this->_name = name;
+}#ifndef ZOMBIE__HPP
+# define ZOMBIE__HPP
+
+# include <iostream>
+
+class Zombie
+{
+    private:
+        std::string _name;
+    
+    public:
+        Zombie(std::string name);
+        Zombie();
+        ~Zombie(void);
+
+        std::string getName(void);
+        void        setName(std::string name);
+
+        void        announce(void);
+};
+
+#endif# include "Zombie.hpp"
+
+// Prototypes of functions needed
+Zombie	*zombieHorde(int N, std::string name);
+
+int	main(void)
+{
+	std::string	name = "Boat necromancer";
+	int			num = 3;
+
+	std::cout << "Initializing Zombie Horde" << std::endl;
+	Zombie	*horde = zombieHorde(num, name);
+
+	std::cout << "Announcing the horde" << std::endl;
+	for (int i = 0; i < num; i++)
+		horde[i].announce();
+
+	std::cout << "Killing the horde" << std::endl;
+	delete[] horde;
+	return (0);
+}# include "Zombie.hpp"
+
+// Creating N instances of class Zombie and allocate it to the heap
+Zombie* zombieHorde(int N,std::string name)
+{
+    if (N < 0)
+        return (NULL);
+    
+    Zombie *horde = new Zombie[N];
+
+    for(int i = 0; i < N; i++)
+        horde[i].setName(name);
+
+    return (horde);
+}all: HI_THIS_IS_BRAIN
+
+HI_THIS_IS_BRAIN: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o HI_THIS_IS_BRAIN
+
+clean: 
+	@rm -f HI_THIS_IS_BRAIN
+
+re : clean all
+# include <iostream>
+
+int main(void)
+{
+    std::string	string = "HI THIS IS BRAIN";
+	std::string	*stringPTR = &string;
+	std::string	&stringREF = string;
+
+	// Init
+	std::cout << "Initial value of string: " << string << std::endl;
+
+	// Printing addresses
+	std::cout << "Printing addresses..."  << std::endl;
+	std::cout << "Memory address of string variable: " << &string << std::endl;
+	std::cout << "Memory address held by stringPTR: " << stringPTR << std::endl;
+	std::cout << "Memory address held by stringREF: " << &stringREF << std::endl;
+
+	// Printing data
+	std::cout << "Printing content..."  << std::endl;
+	std::cout << "Value of string variable: " << string << std::endl;
+	std::cout << "Value pointed by stringPTR: " << *stringPTR << std::endl;
+	std::cout << "Value pointed by stringREF: " << string << std::endl;
+	return (0);
+}#include "HumanA.hpp"
+
+//using initializer list for fewer lines I guess..
+HumanA::HumanA(std::string name, Weapon &weapon): _name(name), _weapon(weapon)
+{
+    std::cout << "HumanA created under the name of : " << _name << " and armed with " << _weapon.getType() << std::endl;
+}
+
+HumanA::~HumanA(void)
+{
+    std::cout << this->_name <<" dissmised" << std::endl;
+}
+
+void HumanA::attack(void)
+{
+    std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
+}#ifndef HUMANA_HPP
+# define HUMANA_HPP
+
+# include "Weapon.hpp"
+
+class HumanA
+{
+    private:
+        std::string _name;
+        Weapon      &_weapon;
+    
+    public:
+        HumanA(std::string name, Weapon &weapon);
+        ~HumanA(void);
+
+        void attack(void);
+};
+
+#endif# include "HumanB.hpp"
+
+HumanB::HumanB(std::string name): _name(name), _weapon(NULL)
+{
+    std::cout << "HumanB created under the name of : " << _name << " and he's unarmed"<< std::endl;
+}
+
+HumanB::~HumanB(void)
+{
+    std::cout << this->_name <<" dissmised" << std::endl;
+}
+
+void	HumanB::attack(void)
+{
+	std::cout << this->_name << " attacks with their " << (!this->_weapon ? "fists" : this->_weapon->getType()) << std::endl;
+}
+
+void	HumanB::setWeapon(Weapon &weapon)
+{
+	this->_weapon = &weapon;
+    std::cout << this->_name << " got armed with " << this->_weapon->getType() << std::endl;
+}
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
+
+# include "Weapon.hpp"
+
+class HumanB
+{
+    private:
+        std::string _name;
+        Weapon      *_weapon;
+    
+    public:
+        HumanB(std::string name);
+        ~HumanB(void);
+
+        void attack(void);
+        void	setWeapon(Weapon &weapon);
+};
+
+#endifall: unnecessary_violence
+
+unnecessary_violence: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o unnecessary_violence
+
+clean: 
+	@rm -f unnecessary_violence
+
+re : clean all
+# include "Weapon.hpp"
+
+Weapon::Weapon(std::string type)
+{
+    this->_type = type;
+}
+
+Weapon::~Weapon(void){}
+
+const std::string& Weapon::getType(void)
+{
+    return (this->_type);
+}
+
+void Weapon::setType(std::string type)
+{
+    this->_type = type;
+}#ifndef WEAPON_HPP
+# define WEAPON_HPP
+
+# include <iostream>
+
+class Weapon
+{
+    private:
+        std::string _type;
+    
+    public:
+        Weapon(std::string type);
+        ~Weapon(void);
+
+        const std::string& getType(void);
+        void        setType(std::string type);
+};
+
+#endif#include "HumanA.hpp"
+#include "HumanB.hpp"
+
+int main()
+{
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanA bob("Bob", club);
+        bob.attack();
+        club.setType("some other type of club");
+        bob.attack();
+    }
+    
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanB jim("Jim");
+        jim.setWeapon(club);
+        jim.attack();
+        club.setType("some other type of club");
+        jim.attack();
+    }
+return 0;
+}
+all: replace
+
+replace: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o replace
+
+clean: 
+	@rm -f replace
+
+re : clean all
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+std::string findAndReplace(std::string inputLine, std::string target, std::string replacement)
+{
+    //seraching for target index if found
+    int position = inputLine.find(target);
+
+    if (position == -1)
+        return inputLine;
+    
+    //deleting the target and replace it with replacememnt in the exact same position(index)
+    inputLine.erase(position, target.length());
+    inputLine.insert(position, replacement);
+    return inputLine;
+}
+
+void replaceProcess(std::ifstream & inputFile, std::ofstream & outputFile, std::string target, std::string replacement)
+{
+    std::string currentLine;
+
+    //storing line data from inputfile to currentline
+    std::getline(inputFile, currentLine);
+    while (true) 
+    {
+        std::string originalLine = currentLine;
+
+        currentLine = findAndReplace(currentLine, target, replacement);
+        //when currentline is the same as originalline even after findandreplace function then are no further changes to be made
+        if (originalLine == currentLine)
+            break;
+    }
+    //printing the currentline into output file with newline
+    outputFile << currentLine << std::endl;
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 4)
+    {
+        std::cerr << "./replace <filename> <find> <replace>" << std::endl;
+        return 1;
+    }
+
+    std::string inputFileName = argv[1];
+    std::string target = argv[2];
+    std::string replacement = argv[3];
+
+    if (inputFileName.empty() || target.empty() || replacement.empty())
+    {
+        std::cerr << "You can't insert empty arguments." << std::endl;
+        return 1;
+    }
+
+    //opening an input/output file stream, expected null terminated string, a.k.a string.data()
+    std::ifstream inputFile(inputFileName.data());
+    if (!inputFile.is_open())
+    {
+        std::cerr << "Input file cannot be opened!" << std::endl;
+        return 1;
+    }
+
+    std::ofstream outputFile((inputFileName + ".replace").data());
+    if (!outputFile.is_open())
+    {
+        std::cerr << "Output file cannot be created!" << std::endl;
+        return 1;
+    }
+
+    //looping on the file until we reach EOF
+    while (!inputFile.eof())
+        replaceProcess(inputFile, outputFile, target, replacement);
+
+    inputFile.close();
+    outputFile.close();
+
+    std::cout << "Done. review changes by typing cat " << inputFileName <<".replace" << std::endl;
+    return 0;
+}
+#include "Harl.hpp"
+
+void Harl::complain(std::string level)
+{
+    void (Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    
+    int i;
+    for (i = 0; i < 4; i++)
+    {
+        if (level == levels[i])
+        {
+            (this->*functions[i])();
+            break;
+        }
+    }
+    
+    if (i == 4)
+        std::cout << "Unknown complaint level" << std::endl;
+}
+
+void Harl::debug(void)
+{
+    std::cout << "[ DEBUG ]" << std::endl;
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
+}
+
+void Harl::info(void)
+{
+    std::cout << "[ INFO ]" << std::endl;
+    std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
+}
+
+void Harl::warning(void)
+{
+    std::cout << "[ WARNING ]" << std::endl;
+    std::cout << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." << std::endl;
+}
+
+void Harl::error(void)
+{
+    std::cout << "[ ERROR ]" << std::endl;
+    std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
+}#ifndef HARL_HPP
+#define HARL_HPP
+
+#include <string>
+#include <iostream>
+
+class Harl
+{
+    private:
+        void    debug(void);
+        void    info(void);
+        void    warning(void);
+        void    error(void);
+
+    public:
+        void    complain(std::string level);
+};
+
+#endifall: harl
+
+harl: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o harl
+
+clean: 
+	@rm -f harl
+
+re : clean all
+#include "Harl.hpp"
+
+int main(int argc, char **argv) {
+	Harl	harl;
+
+	(void) argc;
+	(void) argv;
+	/* Debug complain */
+	harl.complain("DEBUG");
+	/* Info complain */
+	harl.complain("INFO");
+	/* Warning complain */
+	harl.complain("WARNING");
+	/* Error complain */
+	harl.complain("ERROR");
+	/* Unknown complain */
+	harl.complain("");
+	return (0);
+}#include "Harl.hpp"
+
+void Harl::complain(std::string level)
+{
+    void (Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    
+    int i;
+    for (i = 0; i < 4; i++)
+    {
+        if (level == levels[i])
+        {
+            (this->*functions[i])();
+            break;
+        }
+    }
+    
+    if (i == 4)
+        std::cout << "Unknown complaint level" << std::endl;
+}
+
+
+void Harl::filter(std::string level) {
+    int level_num = 4;
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    
+    for (int i = 0; i < 4; i++) {
+        if (level == levels[i]) {
+            level_num = i;
+            break;
+        }
+    }
+
+    switch (level_num) {
+        case 0:
+            debug();
+            // fall through
+        case 1:
+            info();
+            // fall through
+        case 2:
+            warning();
+            // fall through
+        case 3:
+            error();
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+    }
+}
+
+void Harl::debug(void)
+{
+    std::cout << "[ DEBUG ]" << std::endl;
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
+}
+
+void Harl::info(void)
+{
+    std::cout << "[ INFO ]" << std::endl;
+    std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
+}
+
+void Harl::warning(void)
+{
+    std::cout << "[ WARNING ]" << std::endl;
+    std::cout << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." << std::endl;
+}
+
+void Harl::error(void)
+{
+    std::cout << "[ ERROR ]" << std::endl;
+    std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
+}#ifndef HARL_HPP
+#define HARL_HPP
+
+#include <string>
+#include <iostream>
+
+class Harl
+{
+    private:
+        void    debug(void);
+        void    info(void);
+        void    warning(void);
+        void    error(void);
+
+    public:
+        void    complain(std::string level);
+        void    filter(std::string level);
+};
+
+#endif
+all: harlFilter
+
+harlFilter: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o harlFilter
+
+clean: 
+	@rm -f harlFilter
+
+re : clean all
+#include "Harl.hpp"
+#include <iostream>
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        std::cout << "Usage: ./harlFilter <level>" << std::endl;
+        return 1;
+    }
+
+    Harl harl;
+    harl.filter(argv[1]);
+
+    return 0;
+}

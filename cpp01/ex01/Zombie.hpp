@@ -2,6 +2,7 @@
 # define ZOMBIE__HPP
 
 # include <iostream>
+# include <new>
 
 class Zombie
 {
