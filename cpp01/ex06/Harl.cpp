@@ -1,25 +1,5 @@
 #include "Harl.hpp"
 
-void Harl::complain(std::string level)
-{
-    void (Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    
-    int i;
-    for (i = 0; i < 4; i++)
-    {
-        if (level == levels[i])
-        {
-            (this->*functions[i])();
-            break;
-        }
-    }
-    
-    if (i == 4)
-        std::cout << "Unknown complaint level" << std::endl;
-}
-
-
 void Harl::filter(std::string level) {
     int level_num = 4;
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};

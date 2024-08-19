@@ -13,7 +13,6 @@ int	main(void)
 	if (horde == NULL)
 	{
 		std::cerr << "Error: Memory allocation failed." << std::endl;
-		delete[] horde;
 		return (1);
 	}
 
