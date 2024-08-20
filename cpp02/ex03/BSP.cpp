@@ -16,4 +16,4 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
     
     // Check if point is inside the triangle
     return (w1 > 0) && (w2 > 0) && (w3 > 0);
-}
+} 

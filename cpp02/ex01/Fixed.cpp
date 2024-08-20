@@ -45,17 +45,18 @@ void Fixed::setRawBits(int const raw)
 {
     this->_fixedPointValue = raw;
 }
-
+// we divide the fixed-point value by 256 to get the float value
 float Fixed::toFloat(void) const
 {
     return (float)this->_fixedPointValue / (1 << _fractionalBits);
 }
-
+// we shift the fixed-point value by 8 bits to get the int value, we devide the fixed-point value by 256/2^8
 int Fixed::toInt(void) const
 {
     return this->_fixedPointValue >> _fractionalBits;
 }
 
+// call an object "out" of type ostream and pass the object "fixed" of type Fixed then return the object "out" with the value of the object "fixed" in float
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
     out << fixed.toFloat();

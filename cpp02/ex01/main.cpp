@@ -8,10 +8,9 @@ int main( void )
     Fixed const c( 42.42f );
     Fixed const d( b );
 
-    a = Fixed( 1234.4321f );
     
     //totaly optional but ensures the visibility of float conversion
-    //std::cout << std::fixed << std::setprecision(4);
+    // std::cout << std::fixed << std::setprecision(2);
 
 
     std::cout << "a is " << a << std::endl;
