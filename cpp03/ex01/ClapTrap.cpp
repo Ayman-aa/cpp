@@ -8,6 +8,8 @@ ClapTrap::ClapTrap(void) : _name("unidentified"), _hitPoints(10), _energyPoints(
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
+    if(name.empty())
+        this->_name = "unidentified";
     std::cout << "ClapTrap parameterized constructor called for '" << this->_name << "'" << std::endl;
 }
 
@@ -58,7 +60,6 @@ void ClapTrap::takeDamage(unsigned int amount)
         this->_hitPoints -= amount;
         std::cout << "ClapTrap " << this->_name << " takes " << amount << " damage, reducing hit points to " << this->_hitPoints << std::endl;
     }
-    std::cout <<" this is the amount : " << amount << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -100,4 +101,8 @@ void ClapTrap::setAttackDamage(int attackDamage)
 {
     std::cout << "ClapTrap " << this->_name << " sets attack damage to " << attackDamage << std::endl;
     this->_attackDamage = attackDamage;
+}
+int ClapTrap::getAttackDamage(void) const
+{
+    return (this->_attackDamage);
 }
