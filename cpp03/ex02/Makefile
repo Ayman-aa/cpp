@@ -1,9 +1,9 @@
-all: Clap
+all: Frag
 
-Clap: *.cpp
-	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o Clap
+Frag: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o Frag
 
 clean: 
-	@rm -f Clap
+	@rm -f Frag
 
 re : clean all

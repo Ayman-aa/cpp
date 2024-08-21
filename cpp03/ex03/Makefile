@@ -1,9 +1,9 @@
-all: Clap
+all: Diamond
 
-Clap: *.cpp
-	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o Clap
+Diamond: *.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o Diamond
 
 clean: 
-	@rm -f Clap
+	@rm -f Diamond
 
 re : clean all
