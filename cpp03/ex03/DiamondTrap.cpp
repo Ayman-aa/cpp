@@ -1,6 +1,6 @@
 # include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("unidentified_clap_name") 
+DiamondTrap::DiamondTrap() : ClapTrap("unidentified_clap_name"), ScavTrap(), FragTrap()
 {
     this->_name = "unidentified";
     this->_hitPoints = this->FragTrap::_hitPoints;
@@ -9,7 +9,7 @@ DiamondTrap::DiamondTrap() : ClapTrap("unidentified_clap_name")
     std::cout << "DiamondTrap default constructor" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name.empty() ? "unidentified_clap_name" : name + "_clap_name") 
+DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name.empty() ? "unidentified_clap_name" : name + "_clap_name"), ScavTrap(), FragTrap() 
 {
     this->_name = name.empty() ? "unidentified" : name;
     this->_hitPoints = this->FragTrap::_hitPoints;
@@ -29,7 +29,7 @@ DiamondTrap::~DiamondTrap()
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap &other)
 {
-    std::cout << "DiamondTrap assignment operator called for " << this->_name << " = " << other._name << std::endl;
+    std::cout << "DiamondTrap assignment operator called for " << this->_name << std::endl;
     if (this != &other)
     {
         ClapTrap::operator=(other);
