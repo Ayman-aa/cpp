@@ -8,7 +8,7 @@ int main(void)
     ClapTrap clapTrap("Clapy");
     ScavTrap scavtrap("Scavy");
     FragTrap fragTrap ("Fragu");
-    DiamondTrap diamondTrap("Diama");
+    DiamondTrap diamondTrap("Diamy");
 
     clapTrap.setAttackDamage(5);
     clapTrap.attack(scavtrap.getName());

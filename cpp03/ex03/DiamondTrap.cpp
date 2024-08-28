@@ -3,18 +3,14 @@
 DiamondTrap::DiamondTrap() : ClapTrap("unidentified_clap_name"), ScavTrap(), FragTrap()
 {
     this->_name = "unidentified";
-    this->_hitPoints = this->FragTrap::_hitPoints;
-    this->_energyPoints = this->ScavTrap::_energyPoints;
-    this->_attackDamage = this->FragTrap::_attackDamage;
+    this->_energyPoints = 50;
     std::cout << "DiamondTrap default constructor" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name.empty() ? "unidentified_clap_name" : name + "_clap_name"), ScavTrap(), FragTrap() 
 {
     this->_name = name.empty() ? "unidentified" : name;
-    this->_hitPoints = this->FragTrap::_hitPoints;
-    this->_energyPoints = this->ScavTrap::_energyPoints;
-    this->_attackDamage = this->FragTrap::_attackDamage;
+    this->_energyPoints = 50;
     std::cout << "DiamondTrap named constructor called for " << name << std::endl;
 }
 
@@ -47,5 +43,5 @@ void DiamondTrap::attack(const std::string &target)
 
 void DiamondTrap::whoAmI()
 {
-    std::cout << "I am " << this->_name << " and my ClapTrap name is " << this->ClapTrap::_name << std::endl;
+    std::cout << "DiamondTrap name: " << this->_name << ", ClapTrap name: " << ClapTrap::getName() << std::endl;
 }
