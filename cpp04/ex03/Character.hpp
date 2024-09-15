@@ -7,7 +7,7 @@
 typedef struct LostItems{
     AMateria *addr;
     LostItems* next;
-};
+}LostItems;
 
 class Character : public ICharacter
 {
@@ -25,7 +25,7 @@ class Character : public ICharacter
         Character &operator=(const Character& src);
         ~Character();
 
-        std::string const & get_name() const;
+        std::string const & getName() const;
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);

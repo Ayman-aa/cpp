@@ -63,7 +63,7 @@ Character::~Character()
 }
 
 // Getter for character name
-std::string const & Character::get_name() const{ return _name; }
+std::string const & Character::getName() const{ return _name; }
 
 // Equip Materia into the first available slot
 void Character::equip(AMateria* m) 
@@ -122,3 +122,4 @@ void Character::deleteList(LostItems *head)
         delete temp; 
     }
 }
+
