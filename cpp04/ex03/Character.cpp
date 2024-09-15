@@ -1,19 +1,19 @@
 #include "Character.hpp"
 
-Character::Character() : Name("Unnamed"), head(NULL)
+Character::Character() : _name("Unnamed"), head(NULL)
 {
     for (int i = 0; i < 4; ++i)
         inventory[i] = NULL;
 }
 
 // Parametrized Constructor
-Character::Character(std::string const & name) : Name(name), head(NULL)
+Character::Character(std::string const & name) : _name(name), head(NULL)
 {
     for (int i = 0; i < 4; ++i)
         inventory[i] = NULL;
 }
 
-Character::Character(const Character &copy) : Name(copy.Name), head(NULL)
+Character::Character(const Character &copy) : _name(copy._name), head(NULL)
 {
     for (int i = 0; i < 4; ++i)
     {
@@ -35,7 +35,7 @@ Character& Character::operator=(const Character& src)
 {
     if (this != &src)
     {
-        Name = src.Name;
+        _name = src._name;
         for (int i = 0; i < 4; ++i)
         {
             delete inventory[i];
@@ -63,7 +63,7 @@ Character::~Character()
 }
 
 // Getter for character name
-std::string const & Character::getName() const{ return Name; }
+std::string const & Character::get_name() const{ return _name; }
 
 // Equip Materia into the first available slot
 void Character::equip(AMateria* m) 

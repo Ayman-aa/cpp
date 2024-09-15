@@ -13,7 +13,7 @@ class Character : public ICharacter
 {
     private :
     
-        std::string Name;
+        std::string _name;
         AMateria *inventory[4];
         LostItems *head;
 
@@ -25,7 +25,7 @@ class Character : public ICharacter
         Character &operator=(const Character& src);
         ~Character();
 
-        std::string const & getName() const;
+        std::string const & get_name() const;
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
