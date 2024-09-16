@@ -1,11 +1,7 @@
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
-#include <string>
-#include <iostream>
-
-// abstarct class is a class that has at least one pure virtual function
-// and cannot be instantiated
+# include <iostream>
 
 class Animal
 {
@@ -14,12 +10,14 @@ class Animal
 
     public:
         Animal();
-        Animal(const Animal& other);
-        Animal& operator=(const Animal& other);
+        Animal(std::string type);
         virtual ~Animal();
 
-        virtual void makeSound() const = 0;
+        Animal(const Animal &animal);
+        Animal &operator=(const Animal &animal);
+
         std::string getType() const;
+        virtual void makeSound() const = 0;
 };
 
 #endif
