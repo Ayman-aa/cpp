@@ -26,11 +26,11 @@ class Character : public ICharacter
         ~Character();
 
         std::string const & getName() const;
-        void equip(AMateria* m);
+        void equip(AMateria* materia);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
-        LostItems *create (AMateria *m);
-        LostItems * insert (LostItems *head, AMateria *m);
+        LostItems *create (AMateria *materia);
+        LostItems * insert (LostItems *head, AMateria *materia);
         void deleteList (LostItems *head);
 };
 

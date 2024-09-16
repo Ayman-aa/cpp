@@ -43,6 +43,9 @@ int main() {
     AMateria* cure2 = new Cure(); // Creating new Cure Materia
     player->equip(ice2);
     player->equip(cure2);
+    player->equip(ice); // Re-equipping the lost Ice Materia
+    player->equip(cure); // Re-equipping the lost Cure Materia
+    player->use(2, *dummy); // Using Ice on Dummy
 
     // Deep copy test (copy constructor)
     std::cout << "Creating a deep copy of Player character (copy constructor)...\n";
@@ -50,8 +53,8 @@ int main() {
 
     // Use Materias in the copied character to verify deep copy
     std::cout << "Using Materias on the copied Player...\n";
-    playerCopy->use(0, *dummy); // Using Ice on Dummy
-    playerCopy->use(1, *dummy); // Using Cure on Dummy
+    playerCopy->use(0, *dummy); // Using Ice2 on Dummy
+    playerCopy->use(1, *dummy); // Using Cure2 on Dummy
 
     // Deep copy test (assignment operator)
     std::cout << "Testing assignment operator for deep copy...\n";
@@ -60,8 +63,8 @@ int main() {
 
     // Use Materias in anotherPlayer to verify deep copy
     std::cout << "Using Materias on AnotherPlayer...\n";
-    anotherPlayer.use(0, *dummy); // Using Ice on Dummy
-    anotherPlayer.use(1, *dummy); // Using Cure on Dummy
+    anotherPlayer.use(0, *dummy); // Using Ice2 on Dummy
+    anotherPlayer.use(1, *dummy); // Using Cure2 on Dummy
 
     // Destructor test and cleanup
     std::cout << "Deleting Player, Dummy, PlayerCopy, and AnotherPlayer...\n";

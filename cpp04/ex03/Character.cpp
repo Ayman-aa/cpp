@@ -1,125 +1,133 @@
 #include "Character.hpp"
 
-Character::Character() : _name("Unnamed"), head(NULL)
+Character::Character()
 {
-    for (int i = 0; i < 4; ++i)
-        inventory[i] = NULL;
+	for (int i = 0; i < 4; i++)
+			inventory[i] = NULL;
+	head = NULL;
 }
 
-// Parametrized Constructor
-Character::Character(std::string const & name) : _name(name), head(NULL)
+Character::Character(std::string const & name) : _name(name)
 {
-    for (int i = 0; i < 4; ++i)
-        inventory[i] = NULL;
+	for (int i = 0; i < 4; i++)
+			inventory[i] = NULL;
+	head = NULL;
 }
 
-Character::Character(const Character &copy) : _name(copy._name), head(NULL)
+Character::Character(const Character& copy)
 {
-    for (int i = 0; i < 4; ++i)
-    {
-        if (copy.inventory[i])
-            inventory[i] = copy.inventory[i]->clone();
-        else
-            inventory[i] = NULL;
-    }
-    // Deep copy of the linked list
-    LostItems* temp = copy.head;
-    while (temp)
-    {
-        head = insert(head, temp->addr->clone());
-        temp = temp->next;
-    }
+   *this = copy;
 }
 
-Character& Character::operator=(const Character& src)
+Character &Character::operator=(const Character& src)
 {
-    if (this != &src)
-    {
-        _name = src._name;
-        for (int i = 0; i < 4; ++i)
-        {
-            delete inventory[i];
-            inventory[i] = src.inventory[i] ? src.inventory[i]->clone() : NULL;
-        }
-        // Clear the existing linked list before copying
-        deleteList(head);
-        head = NULL;
-        LostItems* temp = src.head;
-        while (temp)
-        {
-            head = insert(head, temp->addr->clone());
-            temp = temp->next;
-        }
-    }
-    return *this;
+	if (this == &src)
+		return (*this);
+	_name = src._name;
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i])
+		{
+			delete inventory[i];
+			inventory[i] = NULL;;
+		}
+		if (src.inventory[i])
+			inventory[i] = src.inventory[i]->clone();
+	}
+	return *this;
 }
 
-// Destructor to clean up inventory and linked list
 Character::~Character()
 {
-    for (int i = 0; i < 4; ++i)
-        delete inventory[i];
-    deleteList(head); // Clean up linked list
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i] != NULL)
+			delete inventory[i];
+	}
+	deleteList(head);
 }
 
-// Getter for character name
-std::string const & Character::getName() const{ return _name; }
-
-// Equip Materia into the first available slot
-void Character::equip(AMateria* m) 
+std::string const & Character::getName() const
 {
-    for (int i = 0; i < 4; ++i) 
-    {
-        if (!inventory[i]) 
-        {
-            inventory[i] = m;
-            break;
-        }
-    }
+    return _name;
+}
+
+void Character::equip(AMateria* materia)
+{
+	if (!materia)
+		return ;
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i] == NULL)
+		{
+			inventory[i] = materia->clone();
+			break;
+		}
+	}
+	if (!head)
+		head = create(materia);
+	else
+		insert(head ,materia);
 }
 
 void Character::unequip(int idx)
 {
-    if (idx >= 0 && idx < 4 && inventory[idx])
-    {
-        head = insert(head, inventory[idx]); // Add to linked list
-        inventory[idx] = NULL; 
-    }
+	if ((idx >= 0 && idx <= 3) && inventory[idx] != NULL)
+	{
+		if (!head)
+			head = create(inventory[idx]);
+		else
+			insert(head ,inventory[idx]);
+		inventory[idx] = NULL;
+	}
 }
 
-// Use Materia in the inventory
 void Character::use(int idx, ICharacter& target)
 {
-    if (idx >= 0 && idx < 4 && inventory[idx])
-        inventory[idx]->use(target);
+	ICharacter *test = &target;
+	if (!test)
+		return;
+	if ((idx >= 0 && idx <= 3) && inventory[idx] != NULL)
+		inventory[idx]->use(target);
 }
 
-// Create a new LostItems for a lost Materia
-LostItems* Character::create(AMateria *m)
+LostItems *Character::create (AMateria *materia)
 {
-    LostItems* newLostItems = new LostItems();
-    newLostItems->addr = m;
-    newLostItems->next = NULL;
-    return newLostItems;
+	LostItems *lostItem = new LostItems;
+    lostItem->addr = materia;
+    lostItem->next = NULL;
+    return lostItem;
 }
 
-// Insert a new LostItems into the linked list
-LostItems* Character::insert(LostItems *head, AMateria *m) 
+LostItems *Character::insert (LostItems *head, AMateria *materia)
 {
-    LostItems* newLostItems = create(m);
-    newLostItems->next = head; 
-    return newLostItems;
+    LostItems *lostItem;
+	
+    lostItem = head;
+	while (lostItem)
+	{
+		if (lostItem->addr == materia)
+			return (head);
+		lostItem = lostItem->next;
+	}
+	
+    lostItem = head;
+    while(lostItem->next != NULL)
+        lostItem = lostItem->next;
+    lostItem->next = create(materia);
+	
+    return head;
 }
 
-// Delete the entire linked list
-void Character::deleteList(LostItems *head)
+void Character::deleteList (LostItems *head)
 {
-    while (head)
-    {
-        LostItems* temp = head;
-        head = head->next;
-        delete temp->addr; // Free the AMateria stored in the LostItems
-        delete temp; 
-    }
-}
+	LostItems *tmp;
 
+	while(head)
+	{
+		tmp = head;
+		head = head->next;
+		delete tmp->addr;
+		delete tmp;
+	}
+}
