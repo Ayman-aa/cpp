@@ -1,13 +1,16 @@
 # include "Animal.hpp"
 
-Animal::Animal() : type("")
+Animal::Animal() : type("Unknown")
 {
     std::cout << "Animal default constructor called" << std::endl;
 }
 
 Animal::Animal(std::string type) : type(type)
 {
-    std::cout << "Animal type constructor called for "<< type << std::endl;
+    if(type != "")
+        std::cout << "Animal type constructor called for " << type << std::endl;
+    else
+        std::cout << "Animal constructor called" << std::endl;
 }
 
 Animal::~Animal()
