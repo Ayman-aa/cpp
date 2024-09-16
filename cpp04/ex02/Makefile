@@ -5,3 +5,5 @@ animal : *.cpp
 
 clean:
 	@rm animal
+
+re : clean all
