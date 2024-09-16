@@ -19,11 +19,11 @@ Character::Character(const Character& copy)
    *this = copy;
 }
 
-Character &Character::operator=(const Character& src)
+Character &Character::operator=(const Character& copy)
 {
-	if (this == &src)
+	if (this == &copy)
 		return (*this);
-	_name = src._name;
+	_name = copy._name;
 	for (int i = 0; i < 4; i++)
 	{
 		if (inventory[i])
@@ -31,8 +31,8 @@ Character &Character::operator=(const Character& src)
 			delete inventory[i];
 			inventory[i] = NULL;;
 		}
-		if (src.inventory[i])
-			inventory[i] = src.inventory[i]->clone();
+		if (copy.inventory[i])
+			inventory[i] = copy.inventory[i]->clone();
 	}
 	return *this;
 }

@@ -22,7 +22,7 @@ class Character : public ICharacter
         Character();
         Character(std::string const & name);
         Character(const Character &copy);
-        Character &operator=(const Character& src);
+        Character &operator=(const Character& copy);
         ~Character();
 
         std::string const & getName() const;
