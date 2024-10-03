@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Character.hpp"
 #include "AMateria.hpp"
 #include "Ice.hpp"
