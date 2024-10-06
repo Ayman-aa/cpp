@@ -1,6 +1,6 @@
 all : BureauForm
 
-Bureaucrat :
+BureauForm : *.cpp
 	@c++ -Wall -Wextra -Werror *.cpp -o BureauForm
 
 clean :

@@ -1,7 +1,9 @@
-all : BureauForm
+all : Formini
 
-Bureaucrat :
-	@c++ -Wall -Wextra -Werror *.cpp -o BureauForm
+Formini : *.cpp
+	@c++ -Wall -Wextra -Werror *.cpp -o Formini
 
 clean :
-	@rm -f BureauForm
+	@rm -f Formini
+
+re: clean all
