@@ -15,3 +15,32 @@ int main() {
     std::cout << "Deserialized Data: " << deserializedPtr->data << std::endl;
     return 0;
 }
+// example 
+// class MyClass
+// {
+// private:
+//     int x;
+
+// public:
+//     MyClass(int value) : x(value) {}
+//     int getX() { return x; }
+// };
+
+// class Hack
+// {
+// public:
+//     int x;
+// };
+
+// int main() {
+    
+//   MyClass obj(100);
+//   std::cout << obj.getX() << std::endl;
+  
+//   Hack* hk = reinterpret_cast<Hack*>(&obj);
+//   hk->x = 500;
+  
+//   std::cout << obj.getX() << std::endl; 
+  
+//   return 0;
+// }
