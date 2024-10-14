@@ -29,24 +29,27 @@ void identify(Base& p)
 {
     try
     {
-        dynamic_cast<classA&>(p);
+        classA &tmp = dynamic_cast<classA&>(p);
         std::cout << "it's class A" << std::endl;
+        (void)tmp;
         return;
     }
     catch (std::exception& e)
     {
         try
         {
-            dynamic_cast<classB&>(p);
+            classB &tmp = dynamic_cast<classB&>(p);
             std::cout << "it's class B" << std::endl;
+            (void)tmp;
             return;
         }
         catch (std::exception& e)
         {
             try
             {
-                dynamic_cast<classC&>(p);
+                classC &tmp = dynamic_cast<classC&>(p);
                 std::cout << "it's class C" << std::endl;
+                (void)tmp;
                 return;
             }
             catch (std::exception& e)
