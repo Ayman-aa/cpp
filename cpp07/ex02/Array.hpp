@@ -1,8 +1,10 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
+
 # include <iostream>
 # include <string>
 # include <stdexcept>
+
 template <typename T> class Array
 {
     private:
@@ -18,8 +20,6 @@ template <typename T> class Array
         const T &operator[](unsigned int i) const;
         unsigned int size() const;
         ~Array();
-
-
 };
 
 template <typename T> Array<T>::Array() : _array(NULL), _size(0) {}

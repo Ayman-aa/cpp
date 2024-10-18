@@ -81,7 +81,7 @@ int main() {
         biggerArray = smallArray; // This should work, resizing biggerArray
         printArray(biggerArray, "Bigger array after assignment from smaller array");
 
-    } catch (const std::exception& e) {
+    }catch (const std::exception& e) {
         std::cout << "Unexpected exception: " << e.what() << std::endl;
     }
 
@@ -92,9 +92,7 @@ int main() {
         std::cout << "testing the new[] operator" << std::endl;
         arr[10];
         printArray(arr, "Array after out of range access");
-    }
-    catch(const std::exception& e)
-    {
+    } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }
     
