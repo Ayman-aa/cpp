@@ -51,14 +51,14 @@ template <typename T> Array<T> &Array<T>::operator=(Array const &other)
 
 template <typename T> T &Array<T>::operator[](unsigned int i)
 {
-    if (i < 0 || static_cast<unsigned int>(i) >= _size)
+    if (i < 0 || i >= _size)
         throw std::out_of_range("Index out of range");
     return _array[i];
 }
 
 template <typename T> const T &Array<T>::operator[](unsigned int i) const
 {
-    if (i < 0 || static_cast<unsigned int>(i) >= _size)
+    if (i < 0 || i >= _size)
         throw std::out_of_range("Index out of range");
     return _array[i];
 }
