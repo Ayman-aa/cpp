@@ -6,7 +6,6 @@ int main()
     std::list<int> l;
 
     for (int i = 0; i < 50; i += 2) {
-        ;
         l.push_back(i);
     }
 
@@ -39,7 +38,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cout << "Value 1 " << e.what() << std::endl;
     }
     return 0;
 }
