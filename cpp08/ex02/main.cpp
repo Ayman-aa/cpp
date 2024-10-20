@@ -29,24 +29,5 @@ int main()
         ++it;
     }
     std::cout << std::endl;
-
-    //Test with std::list as underlying container
-    // std::cout << "Testing MutantStack with std::list container" << std::endl;
-    // MutantStack<int> mlistStack;
-    // mlistStack.push(10);
-    // mlistStack.push(20);
-    // mlistStack.push(30);
-
-    // std::cout << "Top element (list): " << mlistStack.top() << std::endl;  // Should print 30
-
-    // MutantStack<int>::iterator lit = mlistStack.begin();
-    // MutantStack<int>::iterator lite = mlistStack.end();
-
-    // std::cout << "List-backed stack contents: ";
-    // while (lit != lite) {
-    //     std::cout << *lit <<" ";
-    //     ++lit;
-    // }
-    // std::cout << std::endl;
     return 0;
 }
