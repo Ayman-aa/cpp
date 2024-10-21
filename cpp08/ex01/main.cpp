@@ -77,5 +77,24 @@ int main() {
         std::cerr << "massive Catch: " << e.what() << std::endl;
     }
 
+    try
+    {
+        std::cout << "Test 7: filling container with iterator" << std::endl;
+        Span sp8(10);
+        std::vector<int> v(10);
+        for (int i = 0; i < 10; i++)
+            v[i] = i;
+        sp8.addNumber(v.begin(), v.end());
+        std::cout << "It contains: ";
+        for (int i = 0; i < 10; i++)
+            std::cout << v[i] << " ";
+        std::cout << std::endl;
+        std::cout << "Shortest Span: " << sp8.shortestSpan() << std::endl;
+        std::cout << "Longest Span: " << sp8.longestSpan() << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
     return 0;
 }

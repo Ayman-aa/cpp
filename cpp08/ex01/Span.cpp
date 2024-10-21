@@ -22,6 +22,13 @@ void Span::addNumber(int n)
     _v.push_back(n);
 }
 
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if(_v.size() + std::distance(begin, end) > _n)
+        throw FullException();
+    _v.insert(_v.end(), begin, end);
+}
+
 int Span::shortestSpan()
 {
     if(_v.size() <= 1)
