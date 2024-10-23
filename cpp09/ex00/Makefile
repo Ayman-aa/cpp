@@ -3,7 +3,7 @@ NAME=btc
 all : $(NAME)
 
 $(NAME) : *.cpp
-	@c++ -Wall -Wextra -Werror *.cpp -o $(NAME)
+	@c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o $(NAME)
 
 clean :
 	@rm -rf $(NAME)

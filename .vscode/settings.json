@@ -50,6 +50,7 @@
         "list": "cpp",
         "map": "cpp",
         "iomanip": "cpp",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "set": "cpp"
     }
 }
