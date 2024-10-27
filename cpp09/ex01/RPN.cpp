@@ -2,6 +2,13 @@
 
 RPN::RPN() {}
 RPN::~RPN() {}
+RPN::RPN(const RPN &other) : numbers(other.numbers) {}
+RPN &RPN::operator=(const RPN &other)
+{
+    if (this != &other)
+        numbers = other.numbers;
+    return *this;
+}
 
 bool RPN::isOperator(const std::string &token) const
 {
