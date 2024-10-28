@@ -25,7 +25,7 @@ class PmergeMe
 
         //methods
         void parse(int argNumber, char **arguments);
-        int strToDouble(std::string str);
+        int validNumber(std::string str);
 };
 
 #endif

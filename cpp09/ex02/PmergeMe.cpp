@@ -15,7 +15,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &src)
 
 PmergeMe::~PmergeMe(){}
 
-int PmergeMe::strToDouble(std::string str)
+int PmergeMe::validNumber(std::string str)
 {
     double number;
     std::stringstream ss;
@@ -53,7 +53,7 @@ void PmergeMe::parse(int argNumber, char **arguments)
                 throw std::runtime_error("Invalid argument");
         }
 
-        number = strToDouble(str);
+        number = validNumber(str);
         _C1.push_back(number);
         _C2.push_back(number);
 
