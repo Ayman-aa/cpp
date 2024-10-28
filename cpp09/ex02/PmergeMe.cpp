@@ -15,6 +15,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &src)
 
 PmergeMe::~PmergeMe(){}
 
+// initial function for warming up the program
 int PmergeMe::validNumber(std::string str)
 {
     double number;
@@ -27,6 +28,8 @@ int PmergeMe::validNumber(std::string str)
     return number;
 }
 
+
+// check if the container is sorted using one them (vector or deque) cuz they have the same values
 bool isContainerSorted(std::vector<int> &container)
 {
     for (size_t i = 0; i < container.size() - 1; i++)
@@ -36,6 +39,8 @@ bool isContainerSorted(std::vector<int> &container)
     }
     return true;
 }
+
+// parse the arguments and store them in the two containers
 void PmergeMe::parse(int argNumber, char **arguments)
 {
     int number;
@@ -67,3 +72,25 @@ void PmergeMe::parse(int argNumber, char **arguments)
     std::cout << std::endl;
 }
 
+// The beginning of the merge sort algorithm
+// Starting by implementing main merge sort function
+
+// vector side
+
+std::vector<int> PmergeMe::sortedVector()
+{
+    if(_isSorted)
+        return _C1;
+    
+    std::vector<int, int> couples;
+}
+
+
+// dequw side
+std::deque<int> PmergeMe::sortedDeque()
+{
+    if(_isSorted)
+        return _C2;
+    
+    std::deque<int, int> couples;
+}

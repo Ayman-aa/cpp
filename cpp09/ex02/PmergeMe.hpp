@@ -23,9 +23,15 @@ class PmergeMe
         PmergeMe &operator=(const PmergeMe &src);
         ~PmergeMe();
 
-        //methods
+        //Helper methods
         void parse(int argNumber, char **arguments);
         int validNumber(std::string str);
+
+        //Vector methods
+        std::vector<int> sortedVector();
+
+        //Deque methods
+        std::deque<int> sortedDeque();
 };
 
 #endif
