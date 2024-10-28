@@ -11,8 +11,8 @@
 /*
     BitcoinExchange class
     This class is used to store and process exchange rate data.
-    The exchange rate data is stored in a map with the date as the key and the exchange rate as the value
-        and that's the reason behind choosing map as a container.
+    The exchange rate data is stored in a map with the date as the key and the exchange rate as the value.
+    The reason for using map is that it provides fast lookups and is ordered by key and insure the uniqueness of keys only one value per key.
     The class provides methods to process a file containing exchange rate data and to get the exchange rate for a given date.
 */
 class BitcoinExchange
