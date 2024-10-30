@@ -144,7 +144,12 @@ void BitcoinExchange::processFile(const std::string& filename)
         }
         catch(const std::exception& e)
         {
-            std::cout << "Error: Bad input => " << line << std::endl;
+            if(line.empty())
+                std::cerr << "Error: Empty line." << std::endl;
+            else{
+                std::cerr << "Error: Bad input => " << line << std::endl;
+                std::cerr << "Descriptive error : "  << e.what() << std::endl;
+            }
         } 
     }
     if(!done)

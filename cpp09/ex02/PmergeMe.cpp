@@ -73,7 +73,7 @@ void PmergeMe::parse(int argNumber, char **arguments)
 }
 
 // The beginning of the merge sort algorithm
-// Starting by implementing main merge sort function
+// Starting by implementing main merge sort functions
 
 // vector side
 
@@ -86,7 +86,7 @@ std::vector<int> PmergeMe::sortedVector()
 }
 
 
-// dequw side
+// deque side
 std::deque<int> PmergeMe::sortedDeque()
 {
     if(_isSorted)
