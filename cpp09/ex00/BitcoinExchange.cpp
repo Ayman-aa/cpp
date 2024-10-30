@@ -98,7 +98,7 @@ std::pair<std::string, float> BitcoinExchange::parseLine(const std::string& line
     float priceValue = std::strtof(price.c_str(), &end);
     if(*end != '\0')
         throw std::runtime_error("Invalid price format");
-
+    
     // return the date and price as a pair
     return std::make_pair(date, priceValue);
 }
