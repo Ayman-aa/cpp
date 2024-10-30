@@ -77,13 +77,13 @@ void PmergeMe::parse(int argNumber, char **arguments)
 
 // vector side
 
-void PmergeMe::mergeVector(std::vector<std::pair<int, int> >& arr, int left, int mid, int right)
+void PmergeMe::mergeVector(std::vector<std::pair<int, int> > &arr, int left, int mid, int right)
 {
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    std::vector<std::pair<int, int>> L, R;
+    std::vector<std::pair<int, int> > L, R;
 
     L.reserve(n1);
     R.reserve(n2);
@@ -125,7 +125,7 @@ void PmergeMe::mergeVector(std::vector<std::pair<int, int> >& arr, int left, int
         k++;
     }
 }
-void PmergeMe::mergeSortVector(std::vector<std::pair<int, int>> &couple, int left, int right)
+void PmergeMe::mergeSortVector(std::vector<std::pair<int, int> > &couple, int left, int right)
 {
     if (left < right)
     {
@@ -135,9 +135,9 @@ void PmergeMe::mergeSortVector(std::vector<std::pair<int, int>> &couple, int lef
         mergeVector(couple, left, middle, right);
     }
 }
-void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int>> &couple)
+void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int> > &couple)
 {
-    for (std::vector<std::pair<int, int>>::iterator it = couple.begin(); it != couple.end(); it++)
+    for (std::vector<std::pair<int, int> >::iterator it = couple.begin(); it != couple.end(); it++)
     {
         if (it->first > it->second)
             std::swap(it->first, it->second);
@@ -150,7 +150,7 @@ std::vector<int> PmergeMe::sortedVector()
     if(_isSorted)
         return _C1;
     
-    std::vector<std::pair<int, int>> couples;
+    std::vector<std::pair<int, int> > couples;
     std::vector<int> strugle;
 
     if (_C1.size() % 2 != 0)
@@ -165,6 +165,9 @@ std::vector<int> PmergeMe::sortedVector()
 
     //sorting couples
     recursiveSortingVector(couples);
+
+    std::vector<int> result;
+    return result;
 }
 
 
@@ -174,5 +177,9 @@ std::deque<int> PmergeMe::sortedDeque()
     if(_isSorted)
         return _C2;
     
-    std::deque<int, int> couples;
+    std::deque<std::pair<int, int> > couples;
+
+
+    std::deque<int> result;
+    return result;
 }

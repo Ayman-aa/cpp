@@ -34,9 +34,9 @@ class PmergeMe
 
         //Vector methods
         std::vector<int> sortedVector();
-        void recursiveSortingVector(std::vector<std::pair<int, int>> &couple);
-        void mergeSortVector(std::vector<std::pair<int, int>> &couple, int left, int right);
-        void mergeVector(std::vector<std::pair<int, int> >& arr, int left, int mid, int right);
+        void recursiveSortingVector(std::vector<std::pair<int, int> > &couple);
+        void mergeSortVector(std::vector<std::pair<int, int> > &couple, int left, int right);
+        void mergeVector(std::vector<std::pair<int, int> > &arr, int left, int mid, int right);
 
         //Deque methods
         std::deque<int> sortedDeque();
