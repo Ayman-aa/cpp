@@ -1,12 +1,17 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#include <iostream>
-#include <string>
-#include <climits>
-#include <sstream>
 #include <deque>
+#include <iostream>
 #include <vector>
+#include <algorithm>
+#include <string>
+#include <cmath>
+#include <map>
+#include <set>
+#include <sstream>
+#include <utility>
+#include <climits>
 #include <cstdlib>
 
 class PmergeMe
@@ -29,6 +34,9 @@ class PmergeMe
 
         //Vector methods
         std::vector<int> sortedVector();
+        void recursiveSortingVector(std::vector<std::pair<int, int>> &couple);
+        void mergeSortVector(std::vector<std::pair<int, int>> &couple, int left, int right);
+        void mergeVector(std::vector<std::pair<int, int> >& arr, int left, int mid, int right);
 
         //Deque methods
         std::deque<int> sortedDeque();
