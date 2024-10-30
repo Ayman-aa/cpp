@@ -83,18 +83,23 @@ std::pair<std::string, float> BitcoinExchange::parseLine(const std::string& line
     std::getline(stream, date, delimiter);
     std::getline(stream, price);
     
+    // removing leading and trailing whitespaces
     date.erase(0, date.find_first_not_of(" \t"));
     date.erase(date.find_last_not_of(" \t") + 1);
     price.erase(0, price.find_first_not_of(" \t"));
     price.erase(price.find_last_not_of(" \t") + 1);
-    if (price.find(' ') != std::string::npos)
-        throw std::runtime_error("Invalid price format");
+
+    // checking if the date and price are valid
     if(!isValidDate(date))
         throw std::runtime_error("Invalid date format");
+    if (price.find(' ') != std::string::npos)
+        throw std::runtime_error("Invalid price format");
     char *end;
     float priceValue = std::strtof(price.c_str(), &end);
     if(*end != '\0')
         throw std::runtime_error("Invalid price format");
+
+    // return the date and price as a pair
     return std::make_pair(date, priceValue);
 }
 
