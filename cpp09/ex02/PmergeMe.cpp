@@ -72,6 +72,21 @@ void PmergeMe::parse(int argNumber, char **arguments)
     std::cout << std::endl;
 }
 
+// Jacob's ladder function to calculate the number of steps to reach the top of the ladder with n steps
+/*
+    * 1. if n = 0, return 0
+    * 2. if n = 1, return 1
+    * 3. return the sum of the previous two steps
+*/
+int PmergeMe::jacobLadderSequence(int n)
+{
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+    return jacobLadderSequence(n - 1) + 2 * jacobLadderSequence(n - 2);
+}
+
 // The beginning of the merge sort algorithm
 // Starting by implementing main merge sort functions
 
@@ -145,6 +160,29 @@ void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int> > &couple)
     mergeSortVector(couple, 0, couple.size() - 1);
 }
 
+// Jacob's ladder index function to calculate the index of the jacob's ladder function for a given size
+std::vector<unsigned long> PmergeMe::jacobLadderIndex(std::vector<int> &jacobSea, int size)
+{
+    std::vector<unsigned long> jacobSeaIndex;
+    int jacob = 0;
+
+    for (size_t i = 0; i < jacobSea.size(); i++)
+    {
+        jacob = jacobSea[i];
+        if (jacob <= size)
+            jacobSeaIndex.push_back(jacob);
+
+        while (jacob > 0 && jacobSea[i] != 1 && std::find(jacobSeaIndex.begin(), jacobSeaIndex.end(), --jacob) == jacobSeaIndex.end())
+        {
+            if (jacob > size)
+                continue;
+            jacobSeaIndex.push_back(jacob);
+        }
+    }
+    jacobSeaIndex.erase(jacobSeaIndex.begin());
+    return jacobSeaIndex;
+}
+
 std::vector<int> PmergeMe::sortedVector()
 {
     if(_isSorted)
@@ -165,6 +203,57 @@ std::vector<int> PmergeMe::sortedVector()
 
     //sorting couples
     recursiveSortingVector(couples);
+
+    std::vector<int> smallest;
+    std::vector<int> biggest;
+
+    for (size_t i = 0; i < couples.size(); i++)
+    {
+        smallest.push_back(couples[i].first);
+        biggest.push_back(couples[i].second);
+    }
+
+    display(biggest);
+    display(smallest);
+
+    if (smallest.size() >= 2)
+    {
+        std::vector<int> jacobSea;
+        std::vector<unsigned long> jacobSeaIndex;
+        unsigned long jacob = 0;
+
+        // calculating the jacob's ladder index for the smallest vector 
+        for (size_t i = 2; i < smallest.size() + biggest.size(); i++)
+        {
+            jacob = jacobLadderSequence(i);
+            if (jacob > smallest.size())
+            {
+                jacobSea.push_back(jacob);
+                break;
+            }
+            jacobSea.push_back(jacob);
+        }
+
+        jacobSeaIndex = jacobLadderIndex(jacobSea, smallest.size());
+        
+        biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
+
+        int sizeFinal = 0;
+        for (size_t i = 0; i < jacobSeaIndex.size(); i++)
+        {
+            if (jacobSeaIndex[i] <= smallest.size())
+            {
+                if(pow(2, findIndex(jacobSea,jacobSeaIndex[i])) - 1 < biggest.size())
+                    sizeFinal = pow(2, findIndex(jacobSea,jacobSeaIndex[i])) - 1;
+                else
+                    sizeFinal = biggest.size();
+                
+                biggest.insert(std::lower_bound(biggest.begin(), biggest.end() + sizeFinal, smallest[jacobSeaIndex[i] - 1]), smallest[jacobSeaIndex[i] - 1]);
+            }
+            //std::cout << "jacobSeaIndex[" << i << "] = " << jacobSeaIndex[i] << std::endl;
+        }
+        //std::cout << "sizeFinal = " << sizeFinal << std::endl;
+    }
 
     std::vector<int> result;
     return result;

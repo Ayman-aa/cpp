@@ -9,6 +9,7 @@ int main(int argc, char **argv)
         if (argc < 2)
             throw std::runtime_error("Not enough arguments");
         p.parse(argc - 1, argv + 1);
+        p.sortedVector();
     }
     catch(const std::exception &e)
     {
