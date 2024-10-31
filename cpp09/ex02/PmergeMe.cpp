@@ -92,54 +92,37 @@ int PmergeMe::jacobLadderSequence(int n)
 
 // vector side
 
-void PmergeMe::mergeVector(std::vector<std::pair<int, int> > &arr, int left, int mid, int right)
+void PmergeMe::mergeVector(std::vector<std::pair<int, int> > &arr, int left, int middle, int right)
 {
     int i, j, k;
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
+    int n1 = middle - left + 1;
+    int n2 = right - middle;
 
-    std::vector<std::pair<int, int> > L, R;
+    std::vector<std::pair<int, int> > L(n1), R(n2);
 
-    L.reserve(n1);
-    R.reserve(n2);
+    for (i = 0; i < n1; i++) 
+        L[i] = arr[left + i];
+    
+    for (j = 0; j < n2; j++) 
+        R[j] = arr[middle + 1 + j];
 
-    for (i = 0; i < n1; i++)
-        L.push_back(arr[left + i]);
-    for (j = 0; j < n2; j++)
-        R.push_back(arr[mid + 1 + j]);
-
-    i = 0;
-    j = 0;
+    i = j = 0;
     k = left;
     while (i < n1 && j < n2)
     {
         if (L[i].first <= R[j].first)
-        {
-            arr[k] = L[i];
-            i++;
-        }
-        else
-        {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
+            arr[k++] = L[i++];
+        else 
+            arr[k++] = R[j++];
     }
 
-    while (i < n1)
-    {
-        arr[k] = L[i];
-        i++;
-        k++;
-    }
+    while (i < n1) 
+        arr[k++] = L[i++];
 
-    while (j < n2)
-    {
-        arr[k] = R[j];
-        j++;
-        k++;
-    }
-}
+    while (j < n2) 
+        arr[k++] = R[j++];
+}  
+
 void PmergeMe::mergeSortVector(std::vector<std::pair<int, int> > &couple, int left, int right)
 {
     if (left < right)
@@ -152,10 +135,10 @@ void PmergeMe::mergeSortVector(std::vector<std::pair<int, int> > &couple, int le
 }
 void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int> > &couple)
 {
-    for (std::vector<std::pair<int, int> >::iterator it = couple.begin(); it != couple.end(); it++)
+    for (size_t i = 0; i < couple.size(); i++)
     {
-        if (it->first > it->second)
-            std::swap(it->first, it->second);
+        if (couple[i].first < couple[i].second)
+            std::swap(couple[i].first, couple[i].second);
     }
     mergeSortVector(couple, 0, couple.size() - 1);
 }
@@ -190,7 +173,7 @@ std::vector<int> PmergeMe::sortedVector()
     
     std::vector<std::pair<int, int> > couples;
     std::vector<int> strugle;
-
+    
     if (_C1.size() % 2 != 0)
     {
         strugle.push_back(_C1.back());
@@ -209,12 +192,11 @@ std::vector<int> PmergeMe::sortedVector()
 
     for (size_t i = 0; i < couples.size(); i++)
     {
-        smallest.push_back(couples[i].first);
-        biggest.push_back(couples[i].second);
+        smallest.push_back(couples[i].second);
+        biggest.push_back(couples[i].first);
     }
-
-    display(biggest);
-    display(smallest);
+    // display(biggest);
+    // display(smallest);
 
     if (smallest.size() >= 2)
     {
@@ -233,7 +215,6 @@ std::vector<int> PmergeMe::sortedVector()
             }
             jacobSea.push_back(jacob);
         }
-
         jacobSeaIndex = jacobLadderIndex(jacobSea, smallest.size());
         
         biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
@@ -248,15 +229,19 @@ std::vector<int> PmergeMe::sortedVector()
                 else
                     sizeFinal = biggest.size();
                 
-                biggest.insert(std::lower_bound(biggest.begin(), biggest.end() + sizeFinal, smallest[jacobSeaIndex[i] - 1]), smallest[jacobSeaIndex[i] - 1]);
+                biggest.insert(std::lower_bound(biggest.begin(), biggest.begin() + sizeFinal, smallest[jacobSeaIndex[i] - 1]), smallest[jacobSeaIndex[i] - 1]);
             }
-            //std::cout << "jacobSeaIndex[" << i << "] = " << jacobSeaIndex[i] << std::endl;
+            // std::cout << "jacobSeaIndex[" << i << "] = " << jacobSeaIndex[i] << std::endl;
         }
         //std::cout << "sizeFinal = " << sizeFinal << std::endl;
     }
+    else
+        biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
+    
+    if (!strugle.empty())
+        biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), strugle[0]), strugle[0]);
 
-    std::vector<int> result;
-    return result;
+    return biggest;
 }
 
 
@@ -267,8 +252,144 @@ std::deque<int> PmergeMe::sortedDeque()
         return _C2;
     
     std::deque<std::pair<int, int> > couples;
+    std::deque<int> strugle;
 
+    if (_C2.size() % 2 != 0)
+    {
+        strugle.push_back(_C2.back());
+        _C2.pop_back();
+    }
 
-    std::deque<int> result;
-    return result;
+    //spliting into couples
+    for (size_t i = 0; i < _C2.size(); i += 2)
+        couples.push_back(std::make_pair(_C2[i], _C2[i + 1]));
+    
+    //sorting couples
+    recursiveSortingDeque(couples);
+
+    std::deque<int> smallest;
+    std::deque<int> biggest;
+
+    for (size_t i = 0; i < couples.size(); i++)
+    {
+        smallest.push_back(couples[i].second);
+        biggest.push_back(couples[i].first);
+    }
+
+    if (smallest.size() >= 2)
+    {
+        std::deque<int> jacobSea;
+        std::deque<unsigned long> jacobSeaIndex;
+        unsigned long jacob = 0;
+
+        // calculating the jacob's ladder index for the smallest vector 
+        for (size_t i = 2; i < smallest.size() + biggest.size(); i++)
+        {
+            jacob = jacobLadderSequence(i);
+            if (jacob > smallest.size())
+            {
+                jacobSea.push_back(jacob);
+                break;
+            }
+            jacobSea.push_back(jacob);
+        }
+        jacobSeaIndex = jacobLadderIndex(jacobSea, smallest.size());
+        
+        biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
+
+        int sizeFinal = 0;
+        for (size_t i = 0; i < jacobSeaIndex.size(); i++)
+        {
+            if (jacobSeaIndex[i] <= smallest.size())
+            {
+                if(pow(2, findIndex(jacobSea,jacobSeaIndex[i])) - 1 < biggest.size())
+                    sizeFinal = pow(2, findIndex(jacobSea,jacobSeaIndex[i])) - 1;
+                else
+                    sizeFinal = biggest.size();
+                
+                biggest.insert(std::lower_bound(biggest.begin(), biggest.begin() + sizeFinal, smallest[jacobSeaIndex[i] - 1]), smallest[jacobSeaIndex[i] - 1]);
+            }
+        }
+    }
+    else
+        biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
+
+    if (!strugle.empty())
+        biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), strugle[0]), strugle[0]);
+
+    return biggest;
+}
+
+void PmergeMe::recursiveSortingDeque(std::deque<std::pair<int, int> > &couple)
+{
+    for (size_t i = 0; i < couple.size(); i++)
+    {
+        if (couple[i].first < couple[i].second)
+            std::swap(couple[i].first, couple[i].second);
+    }
+    mergeSortDeque(couple, 0, couple.size() - 1);
+}
+
+void  PmergeMe::mergeSortDeque(std::deque<std::pair<int, int> > &couple, int left, int right)
+{
+    if (left < right)
+    {
+        int middle = left + (right - left) / 2;
+        mergeSortDeque(couple, left, middle);
+        mergeSortDeque(couple, middle + 1, right);
+        mergeDeque(couple, left, middle, right);
+    }
+}
+
+void PmergeMe::mergeDeque(std::deque<std::pair<int, int> > &arr, int left, int middle, int right)
+{
+    int i, j, k;
+    int n1 = middle - left + 1;
+    int n2 = right - middle;
+
+    std::deque<std::pair<int, int> > L(n1), R(n2);
+
+    for (i = 0; i < n1; i++) 
+        L[i] = arr[left + i];
+    
+    for (j = 0; j < n2; j++) 
+        R[j] = arr[middle + 1 + j];
+
+    i = j = 0;
+    k = left;
+    while (i < n1 && j < n2)
+    {
+        if (L[i].first <= R[j].first)
+            arr[k++] = L[i++];
+        else 
+            arr[k++] = R[j++];
+    }
+
+    while (i < n1) 
+        arr[k++] = L[i++];
+
+    while (j < n2) 
+        arr[k++] = R[j++];
+}
+
+std::deque<unsigned long> PmergeMe::jacobLadderIndex(std::deque<int> &jacobSea, int size)
+{
+    std::deque<unsigned long> jacobSeaIndex;
+    int jacob = 0;
+
+    for (size_t i = 0; i < jacobSea.size(); i++)
+    {
+        jacob = jacobSea[i];
+        if (jacob <= size)
+            jacobSeaIndex.push_back(jacob);
+
+        while (jacob > 0 && jacobSea[i] != 1 && std::find(jacobSeaIndex.begin(), jacobSeaIndex.end(), --jacob) == jacobSeaIndex.end())
+        {
+            if (jacob > size)
+                continue;
+            jacobSeaIndex.push_back(jacob);
+        }
+    }
+    jacobSeaIndex.erase(jacobSeaIndex.begin());
+    return jacobSeaIndex;
 }

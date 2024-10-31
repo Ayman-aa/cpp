@@ -13,6 +13,7 @@
 #include <utility>
 #include <climits>
 #include <cstdlib>
+#include <sys/time.h>
 
 class PmergeMe
 {
