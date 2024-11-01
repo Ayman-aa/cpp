@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     
     // results
     std::cout << "After: ";
-    display(sortedDeque);
+    display(sortedVec);
     std::cout << "Time to process a range of " << sortedVec.size() << " Time taken by std::vector: " << std::fixed << (double)durationVector << " us" << std::endl;
     std::cout << "Time to process a range of " << sortedDeque.size() << " Time taken by std::deque: " << std::fixed << (double)durationDeque << " us" << std::endl;
     return 0;
