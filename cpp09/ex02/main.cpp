@@ -9,8 +9,12 @@ int main(int argc, char **argv)
     {
         if (argc < 2)
             throw std::runtime_error("Not enough arguments");
-        if (argc == 2)
+        else if (argc == 2)
             throw std::runtime_error("Nothing to sort");
+        for (int i = 1; i < argc; i++){
+            if(*argv[i] == 0 || *argv[i] == ' ' || *argv[i] == '\t' || *argv[i] == '\n')
+                throw std::runtime_error("Invalid argument");
+        }
         p.parse(argc - 1, argv + 1);
     }
     catch(const std::exception &e)

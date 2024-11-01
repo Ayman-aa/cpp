@@ -20,7 +20,6 @@ class PmergeMe
     private:
         std::vector<int> _C1;
         std::deque<int> _C2;
-        bool _isSorted;
 
     public:
         //canonical form
@@ -65,6 +64,5 @@ template <typename container_type > int findIndex(container_type &container, int
     }
     return -1;
 }
-
 
 #endif

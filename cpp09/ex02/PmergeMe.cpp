@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){ _isSorted = false; }
+PmergeMe::PmergeMe(){}
 
 PmergeMe::PmergeMe(const PmergeMe &src)
 {
@@ -47,12 +47,13 @@ void PmergeMe::parse(int argNumber, char **arguments)
     std::stringstream ss;
     std::string str;
 
+    
     for (int i = 0; i < argNumber; i++)
         ss << arguments[i] << " ";
     
     while (ss >> str)
     {
-        if (str.empty()|| str.find_first_not_of("0123456789") != std::string::npos)
+        if (str.empty() || str.find_first_not_of("0123456789") != std::string::npos)
         {
             if (!str.empty() && !(str[0] == '+' && (str).find_first_not_of("0123456789", 1) == std::string::npos))
                 throw std::runtime_error("Invalid argument");
@@ -64,7 +65,7 @@ void PmergeMe::parse(int argNumber, char **arguments)
 
     }
     if (isContainerSorted(_C1))
-        _isSorted = true;
+        throw std::runtime_error("Already sorted");
 
     std::cout << "Before: ";
     for (size_t i = 0; i < _C1.size(); i++)
@@ -167,10 +168,7 @@ std::vector<unsigned long> PmergeMe::jacobLadderIndex(std::vector<int> &jacobSea
 }
 
 std::vector<int> PmergeMe::sortedVector()
-{
-    if(_isSorted)
-        return _C1;
-    
+{    
     std::vector<std::pair<int, int> > couples;
     std::vector<int> strugle;
     
@@ -248,9 +246,6 @@ std::vector<int> PmergeMe::sortedVector()
 // deque side
 std::deque<int> PmergeMe::sortedDeque()
 {
-    if(_isSorted)
-        return _C2;
-    
     std::deque<std::pair<int, int> > couples;
     std::deque<int> strugle;
 
