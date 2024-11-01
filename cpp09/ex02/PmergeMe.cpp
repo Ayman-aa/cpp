@@ -68,9 +68,7 @@ void PmergeMe::parse(int argNumber, char **arguments)
         throw std::runtime_error("Already sorted");
 
     std::cout << "Before: ";
-    for (size_t i = 0; i < _C1.size(); i++)
-        std::cout << _C1[i] << " ";
-    std::cout << std::endl;
+    display(_C1);
 }
 
 // Jacob's ladder function to rpn the number of steps to reach the top of the ladder with n steps

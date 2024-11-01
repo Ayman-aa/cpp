@@ -33,6 +33,8 @@ int main(int argc, char **argv)
     std::deque<int> sortedDeque = p.sortedDeque();
     gettimeofday(&endTimeDeque, NULL);
     long durationDeque = (endTimeDeque.tv_sec - startTimeDeque.tv_sec) * 1000000 + (endTimeDeque.tv_usec - startTimeDeque.tv_usec);
+    
+    // results
     std::cout << "After: ";
     display(sortedDeque);
     std::cout << "Time to process a range of " << sortedVec.size() << " Time taken by std::vector: " << std::fixed << (double)durationVector << " us" << std::endl;
