@@ -90,7 +90,6 @@ int PmergeMe::jacobLadderSequence(int n)
 // Starting by implementing main merge sort functions
 
 // vector side
-
 void PmergeMe::mergeVector(std::vector<std::pair<int, int> > &arr, int left, int middle, int right)
 {
     int i, j, k;
@@ -134,11 +133,13 @@ void PmergeMe::mergeSortVector(std::vector<std::pair<int, int> > &couple, int le
 }
 void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int> > &couple)
 {
+    // step 2 : sort each pair in the couple (big, small)
     for (size_t i = 0; i < couple.size(); i++)
     {
         if (couple[i].first < couple[i].second)
             std::swap(couple[i].first, couple[i].second);
     }
+    // step 3 : sort the couples based on the first element of the pair using merge sort
     mergeSortVector(couple, 0, couple.size() - 1);
 }
 
@@ -176,13 +177,14 @@ std::vector<int> PmergeMe::sortedVector()
         _C1.pop_back();
     }
 
-    //spliting into couples
+    // step 1: spliting into couples
     for (size_t i = 0; i < _C1.size(); i += 2)
         couples.push_back(std::make_pair(_C1[i], _C1[i + 1]));
 
     //sorting couples
     recursiveSortingVector(couples);
 
+    // step 4: spliting the couples into two vectors
     std::vector<int> smallest;
     std::vector<int> biggest;
 
@@ -213,8 +215,10 @@ std::vector<int> PmergeMe::sortedVector()
         }
         jacobSeaIndex = jacobLadderIndex(jacobSea, smallest.size());
         
+        // sending the first element of the smallest vector to the biggest vector
         biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
 
+        // generating Jacob sea
         int sizeFinal = 0;
         for (size_t i = 0; i < jacobSeaIndex.size(); i++)
         {
