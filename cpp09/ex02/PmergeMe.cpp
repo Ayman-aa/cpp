@@ -73,7 +73,7 @@ void PmergeMe::parse(int argNumber, char **arguments)
     std::cout << std::endl;
 }
 
-// Jacob's ladder function to calculate the number of steps to reach the top of the ladder with n steps
+// Jacob's ladder function to rpn the number of steps to reach the top of the ladder with n steps
 /*
     * 1. if n = 0, return 0
     * 2. if n = 1, return 1
@@ -144,7 +144,7 @@ void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int> > &couple)
     mergeSortVector(couple, 0, couple.size() - 1);
 }
 
-// Jacob's ladder index function to calculate the index of the jacob's ladder function for a given size
+// Jacob's ladder index function to rpn the index of the jacob's ladder function for a given size
 std::vector<unsigned long> PmergeMe::jacobLadderIndex(std::vector<int> &jacobSea, int size)
 {
     std::vector<unsigned long> jacobSeaIndex;
