@@ -71,19 +71,14 @@ void PmergeMe::parse(int argNumber, char **arguments)
     display(_C1);
 }
 
-// Jacob's ladder function to rpn the number of steps to reach the top of the ladder with n steps
-/*
-    * 1. if n = 0, return 0
-    * 2. if n = 1, return 1
-    * 3. return the sum of the previous two steps
-*/
-int PmergeMe::jacobLadderSequence(int n)
+// we create a sequence of Jacobstahl Jn​=Jn−1​+2Jn−2
+int PmergeMe::jacobstahlSequence(int n)
 {
     if (n == 0)
         return 0;
     if (n == 1)
         return 1;
-    return jacobLadderSequence(n - 1) + 2 * jacobLadderSequence(n - 2);
+    return jacobstahlSequence(n - 1) + 2 * jacobstahlSequence(n - 2);
 }
 
 // The beginning of the merge sort algorithm
@@ -143,8 +138,8 @@ void PmergeMe::recursiveSortingVector(std::vector<std::pair<int, int> > &couple)
     mergeSortVector(couple, 0, couple.size() - 1);
 }
 
-// Jacob's ladder index function to rpn the index of the jacob's ladder function for a given size
-std::vector<unsigned long> PmergeMe::jacobLadderIndex(std::vector<int> &jacobSea, int size)
+// we create batches of smallest elements and get them contained to be ready to be inserted in the biggest vector
+std::vector<unsigned long> PmergeMe::jacobstahlSeaIndex(std::vector<int> &jacobSea, int size)
 {
     std::vector<unsigned long> jacobSeaIndex;
     int jacob = 0;
@@ -205,7 +200,7 @@ std::vector<int> PmergeMe::sortedVector()
         // calculating the jacob's ladder index for the smallest vector 
         for (size_t i = 2; i < smallest.size() + biggest.size(); i++)
         {
-            jacob = jacobLadderSequence(i);
+            jacob = jacobstahlSequence(i);
             if (jacob > smallest.size())
             {
                 jacobSea.push_back(jacob);
@@ -213,7 +208,7 @@ std::vector<int> PmergeMe::sortedVector()
             }
             jacobSea.push_back(jacob);
         }
-        jacobSeaIndex = jacobLadderIndex(jacobSea, smallest.size());
+        jacobSeaIndex = jacobstahlSeaIndex(jacobSea, smallest.size());
         
         // sending the first element of the smallest vector to the biggest vector
         biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
@@ -282,7 +277,7 @@ std::deque<int> PmergeMe::sortedDeque()
         // calculating the jacob's ladder index for the smallest vector 
         for (size_t i = 2; i < smallest.size() + biggest.size(); i++)
         {
-            jacob = jacobLadderSequence(i);
+            jacob = jacobstahlSequence(i);
             if (jacob > smallest.size())
             {
                 jacobSea.push_back(jacob);
@@ -290,7 +285,7 @@ std::deque<int> PmergeMe::sortedDeque()
             }
             jacobSea.push_back(jacob);
         }
-        jacobSeaIndex = jacobLadderIndex(jacobSea, smallest.size());
+        jacobSeaIndex = jacobstahlSeaIndex(jacobSea, smallest.size());
         
         biggest.insert(std::lower_bound(biggest.begin(), biggest.end(), smallest[0]), smallest[0]);
 
@@ -361,6 +356,7 @@ void PmergeMe::mergeDeque(std::deque<std::pair<int, int> > &arr, int left, int m
         else 
             arr[k++] = R[j++];
     }
+    
 
     while (i < n1) 
         arr[k++] = L[i++];
@@ -369,7 +365,7 @@ void PmergeMe::mergeDeque(std::deque<std::pair<int, int> > &arr, int left, int m
         arr[k++] = R[j++];
 }
 
-std::deque<unsigned long> PmergeMe::jacobLadderIndex(std::deque<int> &jacobSea, int size)
+std::deque<unsigned long> PmergeMe::jacobstahlSeaIndex(std::deque<int> &jacobSea, int size)
 {
     std::deque<unsigned long> jacobSeaIndex;
     int jacob = 0;
