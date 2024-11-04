@@ -6,11 +6,12 @@
 #include <exception>
 #include <stack>
 #include <cstdlib>
+#include <list>
 
 class RPN
 {
     private:
-        std::stack<int> numbers;
+        std::stack<int, std::list<int> > numbers;
         bool isOperator(const std::string &token) const;
         bool isNumber(const std::string &token) const;
         int strToInt(const std::string &str) const;
